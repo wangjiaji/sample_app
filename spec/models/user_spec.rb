@@ -23,6 +23,14 @@ describe User do
     it { should be_admin }
   end
 
+  describe 'access attribute directly' do
+    it '"admin" should not be allowed' do
+      expect do
+        User.new(admin: true)
+      end.to raise_error(ActiveModel::MassAssignmentSecurity::Error)
+    end
+  end
+
   describe 'when password is not present' do
     before { @user.password = @user.password_confirmation = '' }
     it { should_not be_valid }

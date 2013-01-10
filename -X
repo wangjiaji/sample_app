@@ -1,9 +1,0 @@
-HTTP/1.1 200 OK
-Date: Mon, 17 Dec 2012 06:34:45 GMT
-Content-Type: application/json
-Transfer-Encoding: chunked
-Connection: keep-alive
-Server: gunicorn/0.14.6
-Vary: Cookie
-Set-Cookie: sessionid=891f3c9afe1f512e40c92a263443cf1a; expires=Mon, 31-Dec-2012 06:34:45 GMT; httponly; Max-Age=1209600; Path=/
-

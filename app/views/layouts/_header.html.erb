@@ -4,6 +4,7 @@
       <%= link_to "sample app", '#', id: "logo" %>
       <nav>
 	<ul class="nav pull-right">
+	  <li><%= link_to request.ip, '#' %>
 	  <li><%= link_to "Home", root_path %>
 	  <li><%= link_to "Help", help_path %>
 	    <% if signed_in? %>

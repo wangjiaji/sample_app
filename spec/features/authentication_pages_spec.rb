@@ -56,6 +56,7 @@ describe "Authentication" do
         end
       end
 
+
       describe 'in the User Controller' do
         describe 'visiting the edit page' do
           before { visit edit_user_path(user) }
@@ -86,7 +87,7 @@ describe "Authentication" do
 
       describe 'submitting a PUT request to the Users#update action', :type => :request do
         before { put user_path(wrong_user) }
-        specify { response.should redirect_to(root_path) }
+        specify { response.should redirect_to(signin_path) }
       end
     end
 
@@ -98,8 +99,23 @@ describe "Authentication" do
 
       describe 'submitting a DELETE request to the User#destroy action', type: :request do
         before { delete user_path(user) }
-        specify { response.should redirect_to(root_path) }
+        specify { response.should redirect_to(signin_path) }
       end
+    end
+
+    describe 'as a signed in user' do
+      let(:user) { FactoryGirl.create(:user) }
+      before { sign_in user }
+
+      describe 'visit the signup page' do
+        before { visit signup_path }
+        it { should have_selector('h1', text: user.name) }
+      end
+
+      # describe 'submitting a POST request to the User#new action', type: :request do
+      #   before { post signup_path }
+      #   specify { response.should redirect_to(user_path(user)) }
+      # end
     end
   end
 
