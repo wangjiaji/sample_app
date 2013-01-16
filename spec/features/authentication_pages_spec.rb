@@ -63,7 +63,7 @@ describe "Authentication" do
           it { should have_selector('h1', text: 'Sign in') }
         end
 
-        describe 'submitting to the update action', :type => :request do
+        describe 'submitting to the update action', type: :request do
           before { put user_path(user) }
           specify { response.should redirect_to(signin_path) }
         end
@@ -72,6 +72,18 @@ describe "Authentication" do
       describe 'visiting the user index' do
         before { visit users_path }
         it { should have_selector('h1', text: 'Sign in') }
+      end
+
+      describe 'in the Micropost controller', type: :request do
+        describe 'submitting to the create action' do
+          before { post microposts_path }
+          specify { response.should redirect_to(signin_path) }
+        end
+
+        describe 'submitting to the destroy action' do
+          before { delete micropost_path(FactoryGirl.create(:micropost)) }
+          specify { response.should redirect_to(signin_path) }
+        end
       end
     end
 
